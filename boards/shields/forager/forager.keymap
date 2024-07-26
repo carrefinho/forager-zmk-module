@@ -29,6 +29,12 @@
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
+        sabk: shift_to_alt_backspace {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp LA(BSPC)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
         smart_shift: smart_shift {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
