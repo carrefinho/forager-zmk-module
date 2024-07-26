@@ -1,0 +1,136 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define BASE 0
+#define NAV  1
+#define SYM  2
+#define ADJ  3
+
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+#define MEH LS(LC(LALT))
+
+/ {
+    behaviors {
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping_term_ms = <250>;
+            // quick_tap_ms = <0>;
+            require-prior-idle-ms = <100>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        ht: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping_term_ms = <200>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+        sabk: shift_to_alt_backspace {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp LA(BSPC)>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        smart_shift: smart_shift {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&sk LSHFT>, <&caps_word>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        sym_bspc: left_thumb_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <150>;
+            quick-tap-ms = <200>;
+            bindings = <&mo>, <&sabk>;
+        };
+        lhm: left_homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29 30 31 32 33>;
+        };
+        rhm: right_homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24 30 31 32 33>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base {
+            bindings = <
+            &kp Q           &kp W           &kp F           &kp P           &kp B                                           &kp J           &kp L           &kp U           &kp Y           AS(SEMI)
+            &kp A           &lhm LCTRL R    &lhm LALT S     &lhm LGUI T     &kp G                                           &kp M           &rhm LGUI N     &rhm LALT E     &rhm LCTRL I    &kp O
+            &kp Z           &kp X           &kp C           &kp D           &kp V                                           &kp K           &kp H           AS(COMMA)       AS(DOT)         AS(FSLH)
+                                                                            &sym_bspc 2 0   &smart_shift    &smart_shift    &lt NAV SPACE
+            >;
+        };
+
+        nav {
+            bindings = <
+            &trans          &trans          &trans          &trans          &trans                                          &kp PAGE_UP     &kp LC(PG_UP)   &kp UP          &kp LC(PG_DN)   &kp DELETE
+            &trans          &kp LCTRL       &kp LALT        &kp LGUI        &trans                                          &kp PAGE_DOWN   &kp LEFT        &kp DOWN        &kp RIGHT       &kp BSLH
+            &trans          &trans          &trans          &trans          &trans                                          &trans          &kp HOME        &kp END         &kp LC(SPACE)   &kp LC(SPACE)
+                                                                            &mo SYM         &kp LSHFT       &trans          &trans
+            >;
+        };
+
+        sym {
+            bindings = <
+            AS(N1)          AS(N2)          AS(N3)          AS(N4)          AS(N5)                                          AS(N6)          AS(N7)          AS(N8)          AS(N9)          AS(N0)
+            AS(GRAVE)       &sk LCTRL       &sk LALT        &sk LGUI        &sk LC(LALT)                                    AS(BSLH)        AS(MINUS)       AS(EQUAL)       AS(LBKT)        AS(RBKT)
+            &trans          &trans          &trans          &trans          &trans                                          &trans          &trans          &trans          &trans          &kp ENTER
+                                                                            &trans          &trans          &kp LSHFT       &mo NAV
+            >;
+        };
+
+        adj {
+            bindings = <
+            &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_CLR_ALL                                  &kp C_SLEEP     &trans          &trans          &kp C_BRI_DN    &kp C_BRI_UP
+            &trans          &trans          &trans          &trans          &trans                                          &trans          &trans          &trans          &kp C_VOL_DN    &kp C_VOL_UP
+            &bootloader     &trans          &trans          &trans          &trans                                          &trans          &trans          &trans          &trans          &bootloader
+                                                                            &trans          &trans          &trans          &trans
+            >;
+        };
+    };
+};
+
+&lt {
+    // require-prior-idle-ms = <100>;
+    tapping-term-ms = <150>;
+    quick-tap-ms = <200>;
+};
+
+&mt {
+    quick-tap-ms = <200>;
+};
+
+&sk {
+    release-after-ms = <500>;
+    quick-release;
+};

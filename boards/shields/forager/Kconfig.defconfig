@@ -1,0 +1,16 @@
+if FORAGER_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "FORAGER"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if FORAGER_LEFT || FORAGER_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
