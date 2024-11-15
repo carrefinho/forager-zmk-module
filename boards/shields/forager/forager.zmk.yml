@@ -1,10 +1,11 @@
 file_format: "1"
 id: forager
-name: forager
+name: Forager
 type: shield
 requires: [seeeduino_xiao_ble]
 features:
   - keys
+  - studio
 siblings:
   - forager_left
   - forager_right
