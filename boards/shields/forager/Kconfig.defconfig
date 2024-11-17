@@ -6,6 +6,9 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
+config ZMK_STUDIO
+    default y
+
 endif
 
 if SHIELD_FORAGER_LEFT || SHIELD_FORAGER_RIGHT
