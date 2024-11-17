@@ -1,5 +1,5 @@
-# Forager ZMK Config
+# Forager ZMK Module
 
-This is the sample ZMK config module for [the Forager keyboard](https://github.com/carrefinho/forager).
+This is the ZMK module for [the Forager keyboard](https://github.com/carrefinho/forager).
 
-It uses the awesome [zmk-rgbled-widget from caksoylar](https://github.com/caksoylar/zmk-rgbled-widget).
+Featuring the awesome [zmk-rgbled-widget by caksoylar](https://github.com/caksoylar/zmk-rgbled-widget).
