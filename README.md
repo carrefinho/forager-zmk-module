@@ -8,7 +8,7 @@ Featuring the awesome [zmk-rgbled-widget by caksoylar](https://github.com/caksoy
 
 # Usage
 
-Add these line to `config/west.yml` in your `zmk-config` repository:
+Add these lines to `config/west.yml` in your `zmk-config` repository:
 
 ```yaml
 manifest:
