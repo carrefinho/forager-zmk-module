@@ -37,13 +37,13 @@
             };
             combo_scrolup {
                 timeout-ms = <50>;
-                key-positions = <16 17>;
+                key-positions = <6 7>;
                 bindings = <&msc SCRL_UP>;
                 layers = <LNAV>;
             };
             combo_scroldown {
                 timeout-ms = <50>;
-                key-positions = <26 27>;
+                key-positions = <16 17>;
                 bindings = <&msc SCRL_DOWN>;
                 layers = <LNAV>;
             };
@@ -105,7 +105,7 @@
                 &trans      &kp RC(UP)    &kp RC(LEFT)         &kp RC(RIGHT)         &kp PLUS                 &kp HOME        &kp PG_DN    &kp PG_UP      &kp END          &trans
                 &trans      &kp RC(DOWN)  &kp LS(LG(LBKT))     &kp LS(LG(RBKT))      &kp ASTERISK             &kp LEFT        &kp DOWN     &kp UP         &kp RIGHT        &mkp RCLK
                 &trans      &trans        &kp LS(LG(GRAVE))    &kp LG(GRAVE)         &kp MINUS                &mmv MOVE_LEFT  &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT  &mkp LCLK
-                                                               &to LNAV              &trans                   &trans          &trans
+                                                               &trans                &trans                   &trans          &trans
                         >;
                 };
 
@@ -120,7 +120,7 @@
                 &trans      &kp RC(UP)    &kp RC(LEFT)         &kp RC(RIGHT)         &kp PLUS                 &trans        &kp N7      &kp N8       &kp N9      &trans
                 &trans      &kp RC(DOWN)  &kp LS(LG(LBKT))     &kp LS(LG(RBKT))      &kp ASTERISK             &trans        &kp N4      &kp N5       &kp N6      &trans
                 &trans      &trans        &kp LS(LG(GRAVE))    &kp LG(GRAVE)         &kp MINUS                &kp N0        &kp N1      &kp N2       &kp N3      &kp BSLH
-                                                               &to LFUN              &trans                   &trans        &trans
+                                                               &trans                &trans                   &trans        &trans
                         >;
                 };
 
